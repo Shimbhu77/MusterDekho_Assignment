@@ -63,6 +63,8 @@ public class TaskController {
 	@PostMapping("/app/mark-task-as-completed/{taskId}")
 	public ResponseEntity<String> markTaskCompletedHandler(@PathVariable("taskId") Integer taskId) throws TaskException, UserException
 	{
+		System.out.println("marked completed task");
+		
 		String message = taskService.taskCompleted(taskId);
 		
 		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
@@ -72,6 +74,8 @@ public class TaskController {
 	@PostMapping("/app/mark-task-as-incompleted/{taskId}")
 	public ResponseEntity<String> markTaskIncompletedHandler(@PathVariable("taskId") Integer taskId) throws TaskException, UserException
 	{
+		System.out.println("marked pending task");
+		
 		String message = taskService.taskIncompleted(taskId);
 		
 		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
@@ -118,6 +122,16 @@ public class TaskController {
 	{
 		
 		List<Task> tasks = taskService.filterCompletedTask();
+		
+		return new ResponseEntity<List<Task>>(tasks,HttpStatus.ACCEPTED);
+		
+	}
+	
+	@GetMapping("/app/tasks/filter-pending-tasks")
+	public ResponseEntity<List<Task>> filterPendingTaskHandler() throws TaskException, UserException
+	{
+		
+		List<Task> tasks = taskService.filterPendingTask();
 		
 		return new ResponseEntity<List<Task>>(tasks,HttpStatus.ACCEPTED);
 		

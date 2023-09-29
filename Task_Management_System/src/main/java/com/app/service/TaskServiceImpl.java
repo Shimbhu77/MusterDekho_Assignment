@@ -296,4 +296,30 @@ public class TaskServiceImpl implements TaskService {
 		
 	}
 
+	@Override
+	public List<Task> filterPendingTask() throws TaskException, UserException {
+		
+		User user = userService.loginUser();
+
+		if (user != null) {
+
+			List<Task> tasks = taskRepository.findByUser(user);
+			
+			List<Task> pendingTasks = new ArrayList<>();
+			
+			for(Task t : tasks)
+			{
+				if(t.isCompleted()==false)
+				{
+					pendingTasks.add(t);
+				}
+			}
+
+			return pendingTasks;
+
+		}
+
+		throw new UserException("please login first");
+	}
+
 }

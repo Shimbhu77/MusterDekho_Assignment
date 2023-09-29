@@ -19,5 +19,6 @@ public interface TaskService {
 	 public List<Task> searchTaskByTitleOrDescription(String keyword) throws TaskException, UserException;
 	 public List<Task> filterTaskByDueDate(LocalDate dueDate) throws TaskException, UserException;
 	 public List<Task> filterCompletedTask() throws TaskException, UserException;
+	 public List<Task> filterPendingTask() throws TaskException, UserException;
 	 public String taskAssignedtoAnotherUser(Integer taskId,String username) throws TaskException,UserException;
 }
