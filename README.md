@@ -2,7 +2,7 @@
 
 ## Description
 
-Task App is to design and implement a simple task management system. The system should allow users to create, update, and delete tasks, as well as assign tasks to different users. The system should also support basic search and filtering capabilities.
+Task App is design and implement a simple task management system. The system should allow users to create, update, and delete tasks, as well as assign tasks to different users. The system should also support basic search and filtering capabilities.
 
 ## Application Features
 
@@ -53,6 +53,7 @@ The system is built using the following technologies:
 - React
 - HTML
 - CSS
+- JavaScript
 - Bootstrap
 - VSCode
 
@@ -63,7 +64,12 @@ The system is built using the following technologies:
 - **Fields:**
   - `userId` (Auto-generated ID)
   - `username` (String, 3-20 characters)
-  - `password` (String, password validation rules apply)
+  - `password` (String, - Password Validation:
+    - At least 8 characters
+    - Contains at least one digit
+    - Contains at least one lowercase letter
+    - Contains at least one uppercase letter
+    - Contains at least one special character)
   - `role` (String)
   - `tasks` (List of Task objects, mapped by the user)
 
@@ -71,8 +77,8 @@ The system is built using the following technologies:
 
 - **Fields:**
   - `taskId` (Auto-generated ID)
-  - `title` (String, 3-20 characters)
-  - `description` (String, 3-200 characters)
+  - `title` (String, 3-100 characters)
+  - `description` (String, 3-500 characters)
   - `dueDate` (LocalDate, yyyy-MM-dd format)
   - `completed` (Boolean)
   - `user` (User object)
@@ -169,5 +175,12 @@ The system is built using the following technologies:
   ## View Task and Assigned Task Page
   ![View Task and Assigned Task Page](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1155).png)
 
+ ## Project Presentation Video
+ 
+ [live-project-presentation-drive-link](https://drive.google.com/file/d/1nE3ILgH63LBzrPNftcrGqDeW7IVabYPl/view?usp=sharing)
+ 
+ ## Contributer
+ 
+ [Shimbhu Kumawat](https://github.com/Shimbhu77)
 
 
