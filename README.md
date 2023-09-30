@@ -153,4 +153,21 @@ The system is built using the following technologies:
 - **API Path:** `/app/tasks/assigned-task/{taskId}/{username}`
 - **Method:** POST
 
+  # Fronted Documentation
+  ### Deployed link for Fronted React App on Netlify
+   [netlify_hosted_link](https://65184a2683a64037c3675875--musical-quokka-203749.netlify.app/)
+  ## Sign in Page
+  ![Sign in page ](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1146).png)
+   ## Sign up Page
+  ![Sign up page ](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1147).png)
+   ## Add Task Page
+  ![Add Task Page ](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1151).png)
+   ## Home Page
+  ![Home Page](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1152).png)
+   ## Update Task Page
+  ![Update Task page ](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1154).png)
+  ## View Task and Assigned Task Page
+  ![View Task and Assigned Task Page](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1155).png)
+
+
 
