@@ -3,18 +3,24 @@ package com.app.model;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task {
@@ -23,11 +29,15 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer taskId;
 	
-	private String title;
+
+	@Size(min = 3,max = 20 , message = "Enter minimum 3 character and maximum 20 characters in Title.")
+    private String title;
 	
+	@Size(min = 3,max = 200 , message = "Enter minimum 3 character and maximum 200 characters in description.")
 	private String description;
 	
-	private LocalDate dutDate;
+	
+	private LocalDate dueDate;
 	
 	private boolean completed;
 	

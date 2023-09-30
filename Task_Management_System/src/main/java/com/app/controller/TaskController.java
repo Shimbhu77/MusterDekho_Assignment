@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,11 +108,14 @@ public class TaskController {
 		
 	}
 	
-	@GetMapping("/app/tasks/filter-by-due-date")
-	public ResponseEntity<List<Task>> filterTaskBasedOnDuedateHandler(@PathVariable("dueDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) throws TaskException, UserException
+	@GetMapping("/app/tasks/filter-by-due-date/{dueDate}")
+	public ResponseEntity<List<Task>> filterTaskBasedOnDuedateHandler(@PathVariable("dueDate") String dueDate) throws TaskException, UserException
 	{
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+        LocalDate localDate = LocalDate.parse(dueDate, formatter);
 	
-		List<Task> tasks = taskService.filterTaskByDueDate(dueDate);
+		List<Task> tasks = taskService.filterTaskByDueDate(localDate);
 		
 		return new ResponseEntity<List<Task>>(tasks,HttpStatus.ACCEPTED);
 		

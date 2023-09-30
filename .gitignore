@@ -1,1 +1,4 @@
 /.metadata/
+
+# Local Netlify folder
+.netlify

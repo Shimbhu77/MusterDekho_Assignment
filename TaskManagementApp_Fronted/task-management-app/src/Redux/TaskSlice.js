@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tasks: [],
 };
 
 const tasksSlice = createSlice({
-  name: 'tasks',
+  name: "tasks",
   initialState,
   reducers: {
     addTask: (state, action) => {
@@ -13,7 +13,9 @@ const tasksSlice = createSlice({
     },
     updateTask: (state, action) => {
       const updatedTask = action.payload;
-      const index = state.tasks.findIndex((task) => task.taskId === updatedTask.taskId);
+      const index = state.tasks.findIndex(
+        (task) => task.taskId === updatedTask.taskId
+      );
 
       if (index !== -1) {
         state.tasks[index] = updatedTask;
@@ -37,5 +39,6 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { addTask, updateTask, deleteTask, toggleTask, setData } = tasksSlice.actions;
+export const { addTask, updateTask, deleteTask, toggleTask, setData } =
+  tasksSlice.actions;
 export default tasksSlice.reducer;

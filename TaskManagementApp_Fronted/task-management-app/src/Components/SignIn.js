@@ -1,102 +1,109 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { setAuthenticated } from "../Redux/AuthSlice";
 
 export default function SignIn() {
- // Define state variables
- const [username, setUsername] = useState("");
- const [password, setPassword] = useState("");
+  // Define state variables
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
- const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
- const signIn = ()=>{
+  const navigate = useNavigate();
 
-   const user = {
-       username: username,
-       password: password
-   }
+  // console.log("username : " + username);
+  // console.log("password : " + password);
+
+  const signIn = () => {
+    const base64Credentials = btoa(`${username}:${password}`);
+
+    const user = {
+      username: username,
+      password: password,
+    };
 
     // Make a POST request to sign up API endpoint
     fetch("http://localhost:8888/app/sign-in", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json"
-       },
-       body: JSON.stringify(user),
-     })
-       .then((response) => {
-         if (!response.ok) {
-          
-           alert("Enter correct Username and Password");
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${base64Credentials}`,
+      },
+      // body: JSON.stringify(user),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("Enter correct Username and Password");
+          throw new Error("Enter correct Username and Password");
+        }
+        const jwtToken = response.headers.get("Authorization");
 
-           throw new Error("Network response was not ok");
-         }
-         const jwtToken=response.headers.get("Authorization");
+        // console.log("jwt token , ", response.headers.get("Authorization"));
 
-         console.log("jwt token , ",response.headers.get("Authorization"));
+        localStorage.setItem("jwtToken", jwtToken);
 
-         localStorage.setItem("jwtToken", jwtToken);
+        return response.json();
+      })
+      .then((data) => {
+        alert("User Login Successfully.");
+        // Clear the form after successful submission
 
-         return response.json();
-       })
-       .then((data) => {
-         // Handle the API response here 
-         alert("User Login Successfully.");
-         // Clear the form after successful submission
-        
-         console.log("data  : "+JSON.stringify(data));
+        console.log("data  : " + JSON.stringify(data));
 
-         setPassword("");
-         setUsername("");
+        setPassword("");
+        setUsername("");
 
-         navigate('/');
-         
-       })
-       .catch((error) => {
-         // Handle any errors that occurred during the fetch
-         console.error("There was a problem with the fetch operation:", error);
-       });
- };
- 
+        dispatch(setAuthenticated(true));
 
- return (
-   <>
-   <div className="container">
-     <div className="mb-3 mt-3">
-       <label htmlFor="exampleFormControlInput1" className="form-label">
-         Username
-       </label>
-       <input
-         type="text"
-         className="form-control"
-         id="exampleFormControlInput1"
-         placeholder="Enter your username here"
-         value={username} // Connect value to state
-         onChange={(e) => setUsername(e.target.value)} // Update state on input change
-       />
-     </div>
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the fetch
+        alert(error);
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
 
-     <div className="mb-3 mt-3">
-       <label htmlFor="exampleFormControlInput1" className="form-label">
-         Password
-       </label>
-       <input
-         type="password"
-         className="form-control"
-         id="exampleFormControlInput2"
-         placeholder="Enter password which contains 1 lowercase , 1 uppercase, 1 number and 1 special character and its length should at least 8 characters"
-         value={password} // Connect value to state
-         onChange={(e) => setPassword(e.target.value)} // Update state on input change
-       />
-     </div>
-
-     <button
-       type="button"
-       className="btn btn-primary mt-3"
-       onClick={signIn}
-     >
-       login
-     </button>
-   </div>
- </>
- )
+  return (
+    <>
+      <div className="container">
+        <h2>Sign In</h2> {/* Add a heading */}
+        <div className="mb-3 mt-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Enter your username here"
+            value={username} // Connect value to state
+            onChange={(e) => setUsername(e.target.value)} // Update state on input change
+          />
+        </div>
+        <div className="mb-3 mt-3">
+          <label htmlFor="exampleFormControlInput2" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleFormControlInput2"
+            placeholder="Enter password which contains 1 lowercase, 1 uppercase, 1 number, and 1 special character and its length should be at least 8 characters"
+            value={password} // Connect value to state
+            onChange={(e) => setPassword(e.target.value)} // Update state on input change
+          />
+        </div>
+        <button type="button" className="btn btn-primary mt-3" onClick={signIn}>
+          Login
+        </button>
+        <p>
+          Don't have an account? <Link to="/sign-up">Sign Up</Link>{" "}
+          {/* Add a link to the Sign-Up page */}
+        </p>
+      </div>
+    </>
+  );
 }

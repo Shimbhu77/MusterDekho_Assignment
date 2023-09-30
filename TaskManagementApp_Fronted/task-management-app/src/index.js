@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import tasksReducer from './Redux/TaskSlice';
+import authReducer from './Redux/AuthSlice';
 import { configureStore } from '@reduxjs/toolkit';
 export const store = configureStore({
   reducer:{
-      tasks:tasksReducer
+      tasks:tasksReducer,
+      auth: authReducer
   },
 })
 const root = ReactDOM.createRoot(document.getElementById('root'));

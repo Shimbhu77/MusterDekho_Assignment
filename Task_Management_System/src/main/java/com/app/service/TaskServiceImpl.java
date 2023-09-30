@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
 
 			task.setTitle(taskDTO.getTitle());
 			task.setDescription(taskDTO.getDescription());
-			task.setDutDate(taskDTO.getDueDate());
+			task.setDueDate(taskDTO.getDueDate());
 			task.setUser(user);
 
 			taskRepository.save(task);
@@ -64,7 +64,7 @@ public class TaskServiceImpl implements TaskService {
 
 				task.setTitle(taskDTO.getTitle());
 				task.setDescription(taskDTO.getDescription());
-				task.setDutDate(taskDTO.getDueDate());
+				task.setDueDate(taskDTO.getDueDate());
 
 				taskRepository.save(task);
 
@@ -163,6 +163,7 @@ public class TaskServiceImpl implements TaskService {
 			if (user.getUserId()==userId) {
 				
 				List<Task> tasks = user.getTasks();
+				System.out.println(tasks);
 				
 				return tasks;
 				
@@ -217,7 +218,7 @@ public class TaskServiceImpl implements TaskService {
 			
 			for(Task t : tasks)
 			{
-				if(t.getDutDate().equals(dueDate))
+				if(t.getDueDate().equals(dueDate))
 				{
 					filteredTasks.add(t);
 				}

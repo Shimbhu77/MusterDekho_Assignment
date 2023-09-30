@@ -42,7 +42,7 @@ const ViewTask = () => {
         }
         alert("Assigned this task to Another User Successfully.");
         setName("");
-        navigate('/');
+        navigate("/home");
       })
       .catch((error) => {
         // Handle any errors that occurred during the fetch

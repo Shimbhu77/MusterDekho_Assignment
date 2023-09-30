@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function TaskForm() {
-
   // Define state variables
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -16,45 +15,46 @@ export default function TaskForm() {
     const task = {
       title: title,
       description: desc,
-      dueDate:dueDate
+      dueDate: dueDate,
     };
 
-  const bearerToken = localStorage.getItem("jwtToken");
-  if (bearerToken) {
-     console.log("Jwt token is found.");
-  } else {
-    console.log("JWT Token not found in local storage.");
-  }
+    const bearerToken = localStorage.getItem("jwtToken");
+    if (bearerToken) {
+      console.log("Jwt token is found.");
+    } else {
+      console.log("JWT Token not found in local storage.");
+    }
 
-     // Make a POST request to your API endpoint
+    // Make a POST request to your API endpoint
     fetch("http://localhost:8888/app/create-task", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${bearerToken}`
-        },
-        body: JSON.stringify(task),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${bearerToken}`,
+      },
+      body: JSON.stringify(task),
+    })
+      .then((response) => {
+        return response.json();
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          // Handle the API response here 
-          alert("Task Added Successfully.");
-          // Clear the form after successful submission
-          console.log(task);
-          setTitle("");
-          setDesc("");
-          setDueDate("");
-          navigate('/');
-        })
-        .catch((error) => {
-          // Handle any errors that occurred during the fetch
-          console.error("There was a problem with the fetch operation:", error);
-        });
+      .then((data) => {
+        if (data.message) {
+          throw new Error(data.message); // Throw an error with the error message
+        }
+        // Handle the API response here
+        alert("Task Added Successfully.");
+        // Clear the form after successful submission
+        console.log(task);
+        setTitle("");
+        setDesc("");
+        setDueDate("");
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the fetch
+        alert(error);
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
 
   return (

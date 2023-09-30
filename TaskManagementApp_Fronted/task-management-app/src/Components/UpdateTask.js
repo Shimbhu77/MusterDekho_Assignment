@@ -50,12 +50,12 @@ export default function UpdateTask() {
       body: JSON.stringify(task),
     })
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
         return response.json();
       })
       .then((data) => {
+        if (data.message) {
+          throw new Error(data.message);
+        }
         // Handle the API response here
         alert("Task Updated Successfully.");
         // Clear the form after successful submission
@@ -63,10 +63,11 @@ export default function UpdateTask() {
         setTitle("");
         setDesc("");
         setDueDate("");
-        navigate('/');
+        navigate("/home");
       })
       .catch((error) => {
         // Handle any errors that occurred during the fetch
+        alert(error);
         console.error("There was a problem with the fetch operation:", error);
       });
   };
