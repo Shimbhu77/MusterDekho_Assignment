@@ -17,11 +17,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 	 @Query("SELECT t FROM Task t WHERE t.title LIKE %:keyword% OR t.description LIKE %:keyword%")
 	 List<Task> findByTitleOrDescriptionContainingKeyword(@Param("keyword") String keyword);
 	 
-//	 @Query("SELECT t FROM Task t WHERE t.dueDate = :searchDate")
-//	 List<Task> findByDueDate(@Param("searchDate") LocalDate searchDate);
-	 
-//	 @Query("SELECT t FROM Task t WHERE t.completed = :completed And t.")
-//	 List<Task> findByCompletionStatus(@Param("completed") boolean completed);
-	 
 	 List<Task> findByUser(User user);
 }

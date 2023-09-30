@@ -30,10 +30,10 @@ public class Task {
 	private Integer taskId;
 	
 
-	@Size(min = 3,max = 20 , message = "Enter minimum 3 character and maximum 20 characters in Title.")
+	@Size(min = 3,max = 100 , message = "Enter minimum 3 character and maximum 20 characters in Title.")
     private String title;
 	
-	@Size(min = 3,max = 200 , message = "Enter minimum 3 character and maximum 200 characters in description.")
+	@Size(min = 3,max = 500 , message = "Enter minimum 3 character and maximum 200 characters in description.")
 	private String description;
 	
 	
