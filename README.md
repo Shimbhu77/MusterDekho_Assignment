@@ -34,6 +34,58 @@ This Task Management System includes the following features:
    - A user-friendly graphical user interface (GUI) is implemented for interacting with the system.
    - Appropriate input validation and error handling are in place to ensure correct system behavior and graceful handling of invalid inputs.
 
+  ## Installation and Setup
+
+### 1. Clone the Repository
+
+```
+git clone https://github.com/Shimbhu77/MusterDekho_Assignment.git
+```
+
+### 2. Go the Spring Boot Backend Application folder
+
+```
+cd Task_Management_System/
+
+```
+### 3. Update MySQL database username and password for localhost in Application.properties file 
+- For GitBash
+```
+server.port=8888 
+ 
+ spring.datasource.url=jdbc:mysql://localhost:3306/task_db
+ 
+ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+ 
+ spring.datasource.username={username}
+ 
+ spring.datasource.password={password}
+ 
+ spring.jpa.hibernate.ddl-auto=update 
+ 
+ spring.jpa.show-sql=true
+ 
+ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
+
+
+```
+### 4. Run the Spring Boot Application
+- For GitBash
+```
+./mvnw spring-boot:run
+
+```
+**The backend application will start running on [http://localhost:8888](http://localhost:8888)**
+
+### 5. Deployed Link for Fronted React Application on Netlify
+```
+https://65184a2683a64037c3675875--musical-quokka-203749.netlify.app/
+
+```
+ ### Project Presentation Video
+ 
+ [live-project-presentation-drive-link](https://drive.google.com/file/d/1nE3ILgH63LBzrPNftcrGqDeW7IVabYPl/view?usp=sharing)
+
 ## Technology Stack
 
 The system is built using the following technologies:
@@ -57,6 +109,7 @@ The system is built using the following technologies:
 - Bootstrap
 - VSCode
 
+# Backend Application Documentation
   ## Entity Classes
 
 ### User Entity
@@ -83,7 +136,7 @@ The system is built using the following technologies:
   - `completed` (Boolean)
   - `user` (User object)
 
-## API Endpoints
+## REST API Endpoints
 
 ### User Controller
 
@@ -175,9 +228,6 @@ The system is built using the following technologies:
   ## View Task and Assigned Task Page
   ![View Task and Assigned Task Page](https://github.com/Shimbhu77/MusterDekho_Assignment/blob/main/Project-Screenshot/Screenshot%20(1155).png)
 
- ## Project Presentation Video
- 
- [live-project-presentation-drive-link](https://drive.google.com/file/d/1nE3ILgH63LBzrPNftcrGqDeW7IVabYPl/view?usp=sharing)
  
  ## Contributer
  
