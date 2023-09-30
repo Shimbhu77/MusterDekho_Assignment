@@ -66,17 +66,26 @@ const ViewTask = () => {
           </div>
           <div className="col-md-8">{task.title}</div>
         </div>
+        
         <div className="row mt-3">
           <div className="col-md-4">
-            <strong>Description:</strong>
+            <strong>Due Date:</strong>
           </div>
-          <div className="col-md-8">{task.description}</div>
+          <div className="col-md-8">{task.dueDate}</div>
         </div>
+        
         <div className="row mt-3">
           <div className="col-md-4">
             <strong>Completed:</strong>
           </div>
           <div className="col-md-8">{task.completed ? "Yes" : "No"}</div>
+        </div>
+        
+        <div className="row mt-3">
+          <div className="col-md-4">
+            <strong>Description:</strong>
+          </div>
+          <div className="col-md-8">{task.description}</div>
         </div>
       </div>
 
